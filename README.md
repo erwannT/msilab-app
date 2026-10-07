@@ -20,3 +20,26 @@ For deployments via the GitHub Actions workflow (`deploy.yml`), you must configu
 - Development: `npm run dev`
 - Tests: `npm test`
 - Build: `npm run build`
+
+## Local Pocketbase
+
+```bash
+
+docker compose up
+
+# load example data
+# without running this command, pocket base is initialized with empty collections
+docker compose run apply_example_data
+
+### play with pocketbase
+
+docker compose down
+
+```
+
+Migration scripts (`./data/migrations`) describe the PocketBase database schema, including collection definitions.
+
+The example directory (`./data/example`) contains JSON exports of production collections, with one file per collection.
+
+For uploaded assets, copy the files into the data directory under a dedicated subdirectory named after the related collection.
+

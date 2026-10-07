@@ -1,0 +1,24 @@
+{
+  "collectionId": "pbc_2769025244",
+  "collectionName": "settings",
+  "created": "2026-07-18 09:19:04.030Z",
+  "data": {
+    "holder": {
+      "user": {
+        "avatar": "",
+        "collectionId": "_pb_users_auth_",
+        "collectionName": "users",
+        "created": "2026-07-18 05:35:06.847Z",
+        "email": "yroffin@gmail.com",
+        "emailVisibility": false,
+        "id": "g7n227lw3cbe055",
+        "name": "Yannick",
+        "updated": "2026-07-18 05:35:06.847Z",
+        "verified": false
+      }
+    },
+    "open": false
+  },
+  "id": "settings",
+  "updated": "2026-07-29 11:25:26.589Z"
+}

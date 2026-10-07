@@ -1,0 +1,43 @@
+
+version: "3.8"
+
+services:
+
+  preMigrate:
+        image: "ghcr.io/muchobien/pocketbase:latest"
+        command: [ "migrate", "up", "--migrationsDir", "/migrations", "--dir", "/pb_data" ]    
+        volumes:
+          - ./data/migrations:/migrations
+          - ./pb_data:/pb_data
+
+  pocketbase:
+    image: "ghcr.io/muchobien/pocketbase:latest"
+    environment:
+      - PB_ADMIN_EMAIL=erwann.thebault@localhost.test
+      - PB_ADMIN_PASSWORD=totototo
+    volumes:
+      - ./pb_data:/pb_data
+      - ./data/migrations:/migrations
+    ports:
+      - 8090:8090
+    depends_on:
+      - preMigrate
+
+
+  apply_example_data:
+    restart: no    
+    profiles: ["data"]
+    image: "denoland/deno:latest"
+    command: [ "/script/main.ts" ]
+    environment:
+      - PB_ADMIN_EMAIL=erwann.thebault@localhost.test
+      - PB_ADMIN_PASSWORD=totototo
+      - PB_ADMIN_HOST=pocketbase
+      - PB_ADMIN_PORT=8090
+    volumes:      
+      - ./data/example/data:/data
+      - ./data/example/main.ts:/script/main.ts
+    depends_on:
+      - pocketbase
+  
+      
